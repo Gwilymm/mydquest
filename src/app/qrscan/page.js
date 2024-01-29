@@ -15,9 +15,12 @@ const QRScanPage = () => {
 		);
 		const onScanSuccess = (decodedText, decodedResult) => {
 			console.log(`Code scanned = ${decodedText}`, decodedResult);
+			// redirect to the URL
+			window.location.href = decodedText;
 			// Handle the scanned text as needed.
 		};
 		html5QrCode.render(onScanSuccess, (errorMessage) => {
+			// 
 			console.log(errorMessage);
 		});
 
