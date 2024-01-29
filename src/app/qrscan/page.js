@@ -30,7 +30,7 @@ const QRScanPage = () => {
 	}, []);
 
 	return (
-		<div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
+		<div className="flex flex-col mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 items-center justify-center min-h-screen p-4 bg-red-500">
 			<div id="qr-reader" ref={qrRef} className="w-full max-w-md"></div>
 		</div>
 	);
