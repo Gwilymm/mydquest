@@ -5,12 +5,12 @@
 	"description": "This next.js app is a PWA.",
 	"icons": [
 	  {
-	    "src": "./logo72x72.png",
+	    "src": "./logo/mydquest_new_logo_72x72.png",
 	    "sizes": "72x72",
 	    "type": "image/png"
 	  },
 	  {
-	    "src": "./logo192x192.png",
+	    "src": "./logo/mydquest_new_logo_192x192.png",
 	    "sizes": "192x192",
 	    "type": "image/png"
 	  },
