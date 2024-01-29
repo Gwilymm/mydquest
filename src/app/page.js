@@ -39,7 +39,7 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="p-4 bg-gray-700 text-white">
         <div className="text-center">
-          <p>MyD Quest © 2024</p>
+          <p>MyDQuest © 2024</p>
         </div>
       </footer>
     </div>
