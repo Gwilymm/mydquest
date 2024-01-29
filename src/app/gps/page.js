@@ -13,6 +13,7 @@ export default function GeolocationPage() {
 	const [ error, setError ] = useState(null);
 
 	let customIcon;
+	console.log(window);
 	if (typeof window !== 'undefined') {
 		const L = require('leaflet');
 		customIcon = new L.Icon({
@@ -44,7 +45,7 @@ export default function GeolocationPage() {
 	return (
 		<div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
 			<h1 className="text-xl font-semibold">My Geolocation</h1>
-			{location.altitude !== null && <><br />Altitude: {location.altitude} meters</>}
+
 			{error ? (
 				<p className="text-red-500">{error}</p>
 			) : location.latitude && location.longitude ? (
