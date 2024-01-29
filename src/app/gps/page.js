@@ -12,18 +12,19 @@ export default function GeolocationPage() {
 	});
 	const [ error, setError ] = useState(null);
 
-	const customIcon = new L.Icon({
-		iconUrl: '/assets/image/logo/mydquest_new_logo_72x72.png', // Make sure to provide the correct path to your marker image
-		iconSize: [ 25, 25 ], // Size of the icon
-		iconAnchor: [ 12, 41 ], // Point of the icon which will correspond to marker's location
-		popupAnchor: [ 1, -34 ], // Point from which the popup should open relative to the iconAnchor
-	});
+	let customIcon;
+	if (typeof window !== 'undefined') {
+		const L = require('leaflet');
+		customIcon = new L.Icon({
+			iconUrl: '/assets/image/logo/mydquest_new_logo_72x72.png', // Make sure to provide the correct path to your marker image
+			iconSize: [ 25, 25 ], // Size of the icon
+			iconAnchor: [ 12, 41 ], // Point of the icon which will correspond to marker's location
+			popupAnchor: [ 1, -34 ], // Point from which the popup should open relative to the iconAnchor
+		});
+	}
 
 
 	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			// Your browser-specific code here
-		}
 		if (!navigator.geolocation) {
 			setError('Geolocation is not supported by your browser');
 			return;
