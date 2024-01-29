@@ -21,6 +21,9 @@ export default function GeolocationPage() {
 
 
 	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			// Your browser-specific code here
+		}
 		if (!navigator.geolocation) {
 			setError('Geolocation is not supported by your browser');
 			return;
