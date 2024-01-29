@@ -5,22 +5,22 @@
 	"description": "MyDQuest is a game that will help you discover the forgotten CousCous",
 	"icons": [
 	  {
-	    "src": "./assets/image/logo/mydquest_new_logo_72x72.png",
+	    "src": "/assets/image/logo/mydquest_new_logo_72x72.png",
 	    "sizes": "72x72",
 	    "type": "image/png"
 	  },
 	  {
-	    "src": "./assets/image/logo/mydquest_new_logo_192x192.png",
+	    "src": "/assets/image/logo/mydquest_new_logo_192x192.png",
 	    "sizes": "192x192",
 	    "type": "image/png"
 	  },
 	  {
-	    "src": "./assets/image/logo/mydquest_new_logo_384x384.png",
+	    "src": "/assets/image/logo/mydquest_new_logo_384x384.png",
 	    "sizes": "384x384",
 	    "type": "image/png"
 	  },
 	  {
-	    "src": "./assets/image/logo/mydquest_new_logo_512x512.png",
+	    "src": "/assets/image/logo/mydquest_new_logo_512x512.png",
 	    "sizes": "512x512",
 	    "type": "image/png"
 	  }
