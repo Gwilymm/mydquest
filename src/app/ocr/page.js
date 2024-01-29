@@ -35,20 +35,30 @@ export default function OCRPage() {
 	};
 
 	return (
-		<div className="p-4">
-			<h1 className="text-xl font-semibold">OCR Reader</h1>
-			<video ref={videoRef} onCanPlay={() => videoRef.current.play()} className="w-full h-auto" />
-			<canvas ref={canvasRef} style={{ display: 'none' }} />
-			<button onClick={startVideo} className="px-4 py-2 mt-4 text-white bg-blue-600 rounded hover:bg-blue-700">
-				Start Camera
-			</button>
-			<button onClick={captureImage} className="px-4 py-2 mt-4 text-white bg-green-600 rounded hover:bg-green-700">
-				Capture Image
-			</button>
-			<div className="mt-4 p-4 bg-gray-100 rounded">
-				<h2 className="text-lg font-semibold">Extracted Text:</h2>
-				<p className="text-gray-600">{text}</p>
+		<div className="flex flex-col items-center justify-center min-h-screen p-4">
+			<h1 className="text-3xl font-bold text-gray-800 mb-8">OCR Reader</h1>
+
+			<div className="relative bg-white overflow-hidden shadow rounded-lg max-w-sm w-full">
+				<video ref={videoRef} onCanPlay={() => videoRef.current.play()} className="w-full h-auto" />
+				<canvas ref={canvasRef} className="hidden" />
 			</div>
+
+			<div className="flex flex-col space-y-4 mt-6">
+				<button onClick={startVideo} className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition duration-300">
+					Start Camera
+				</button>
+				<button onClick={captureImage} className="px-6 py-3 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition duration-300">
+					Capture Image
+				</button>
+			</div>
+
+			{text && (
+				<div className="mt-6 p-6 bg-white rounded shadow max-w-md w-full">
+					<h2 className="text-xl font-semibold text-gray-900 mb-2">Extracted Text:</h2>
+					<p className="text-gray-600 whitespace-pre-wrap">{text}</p>
+				</div>
+			)}
 		</div>
+
 	);
 }
