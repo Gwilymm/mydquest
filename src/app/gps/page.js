@@ -22,7 +22,6 @@ export default function GeolocationPage() {
 			setLocation({
 				latitude: position.coords.latitude,
 				longitude: position.coords.longitude,
-				altitude: position.coords.altitude,
 			});
 		}, () => {
 			setError('Unable to retrieve your location');
