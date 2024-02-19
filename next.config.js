@@ -1,18 +1,22 @@
-const withPWA = require("@ducanh2912/next-pwa").default({
-	dest: "public",
-	cacheOnFrontEndNav: true,
-	aggressiveFrontEndNavCaching: true,
-	reloadOnOnline: true,
-	swcMinify: true,
-	workboxOptions: {
-		disableDevLogs: true,
-	},
-	// ... other options you like
-});
+const withPWA = require("@ducanh2912/next-pwa").default;
 
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-	// ... other options you like
+	// Vos autres options de configuration Next.js ici
 };
 
-module.exports = withPWA(nextConfig);
+module.exports = withPWA({
+	...nextConfig,
+	pwa: {
+		dest: "public",
+		cacheOnFrontEndNav: true,
+		aggressiveFrontEndNavCaching: true,
+		reloadOnOnline: true,
+		swcMinify: true,
+		workboxOptions: {
+			disableDevLogs: true,
+		},
+
+		// Autres options PWA que vous souhaitez configurer
+	},
+	secret: 'your-long-randomly-generated-secret-string-here',
+});
