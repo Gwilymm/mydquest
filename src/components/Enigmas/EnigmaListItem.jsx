@@ -1,13 +1,23 @@
-import React from 'react';
-import Link from 'next/link';
+import React, { useState } from 'react';
 import { Typography, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditEnigmaModal from './EditEnigmaModal'; // Import the modal component
+
 
 // Adjust the getRandomImageUrl function to receive width and height parameters
 const getRandomImageUrl = (seed, width, height) => `https://source.unsplash.com/${width}x${height}?sig=${seed}`;
 
 const EnigmaListItem = ({ enigma, onDelete }) => {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const handleOpenModal = () => setIsModalOpen(true);
+	const handleCloseModal = () => setIsModalOpen(false);
+	const handleSaveEnigma = (updatedEnigma) => {
+	  // TODO: Implement the save logic, such as making an API request
+	  console.log('Enigma updated:', updatedEnigma);
+	  handleCloseModal();
+	};
   return (
     // Use Tailwind CSS for styling and animations
     <div className="my-4 transition-transform duration-200 hover:scale-105">
@@ -22,17 +32,21 @@ const EnigmaListItem = ({ enigma, onDelete }) => {
             {enigma.title}
           </Typography>
           <div className="flex justify-end space-x-2">
-            <Link href={`/admin/enigmas/${enigma.id}/edit`} passHref>
-              <IconButton aria-label="edit" size="large" color="primary">
-                <EditIcon fontSize="inherit" />
-              </IconButton>
-            </Link>
+		  <IconButton aria-label="edit" size="large" color="primary" onClick={handleOpenModal}>
+        		<EditIcon fontSize="inherit" />
+      	  </IconButton>
             <IconButton aria-label="delete" size="large" color="secondary" onClick={() => onDelete(enigma.id)}>
               <DeleteIcon fontSize="inherit" />
             </IconButton>
           </div>
         </div>
       </div>
+	 <EditEnigmaModal
+        enigma={enigma}
+        open={isModalOpen}
+        onClose={handleCloseModal}
+        onSave={handleSaveEnigma}
+      />
     </div>
   );
 };
