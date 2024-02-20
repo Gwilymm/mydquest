@@ -1,26 +1,22 @@
-import NextAuth from 'next-auth'
-import GoogleProvider from 'next-auth/providers/google'
-import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import prisma from '@/utils/prisma'// Adjust the import path to your Prisma client instance
+import NextAuth from "next-auth"
+import GoogleProvider from "next-auth/providers/google"
+import { PrismaAdapter } from "@auth/prisma-adapter"
+import prisma from "@/utils/prisma"
+
+
 
 export default NextAuth({
+	adapter: PrismaAdapter(prisma),
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
 		}),
-		// other providers...
 	],
-	adapter: PrismaAdapter(prisma),
-
-	callbacks: {
-		async signIn(user, account, profile) {
-
-			// Allow sign-in to proceed
-			return true;
-		},
+	session: {
+		// Set to jwt in order to CredentialsProvider works properly
+		strategy: 'jwt'
 	},
-
 	// Additional NextAuth configuration
 	secret: process.env.NEXTAUTH_SECRET,
 	database: process.env.DATABASE_URL
