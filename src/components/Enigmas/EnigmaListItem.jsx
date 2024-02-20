@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Typography, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditEnigmaModal from './EditEnigmaModal'; // Import the modal component
+import EditEnigmaModal from './EditEnigmaModal';
+import db from './db'
 
 
 // Adjust the getRandomImageUrl function to receive width and height parameters
@@ -13,11 +14,28 @@ const EnigmaListItem = ({ enigma, onDelete }) => {
 
 	const handleOpenModal = () => setIsModalOpen(true);
 	const handleCloseModal = () => setIsModalOpen(false);
-	const handleSaveEnigma = (updatedEnigma) => {
-	  // TODO: Implement the save logic, such as making an API request
-	  console.log('Enigma updated:', updatedEnigma);
-	  handleCloseModal();
+	const handleSaveEnigma = async (updatedEnigma) => {
+		if (navigator.onLine) {
+		  try {
+		    // Attempt to save to backend
+		    await axios.put(`/api/enigmas/${updatedEnigma.id}`, updatedEnigma);
+		    console.log('Enigma updated in backend:', updatedEnigma);
+		  } catch (error) {
+		    console.error('Failed to update enigma in backend:', error);
+		    // Optionally, save to IndexedDB if backend update fails
+		  }
+		} else {
+		  // Save to IndexedDB for offline
+		  try {
+		    await db.enigmas.put(updatedEnigma);
+		    console.log('Enigma saved locally:', updatedEnigma);
+		  } catch (error) {
+		    console.error('Failed to save enigma locally:', error);
+		  }
+		}
+		handleCloseModal();
 	};
+	
   return (
     // Use Tailwind CSS for styling and animations
     <div className="my-4 transition-transform duration-200 hover:scale-105">
@@ -44,7 +62,7 @@ const EnigmaListItem = ({ enigma, onDelete }) => {
 	 <EditEnigmaModal
         enigma={enigma}
         open={isModalOpen}
-        onClose={handleCloseModal}
+        handleCloseModal={handleCloseModal}
         onSave={handleSaveEnigma}
       />
     </div>

@@ -1,48 +1,35 @@
-// db.js
-const DB_NAME = 'myDatabase';
-const DB_VERSION = 1; // Use a long long for this value (don't use a float)
-const STORE_NAME = 'myObjectStore';
+import Dexie from 'dexie';
 
-let db;
+// Create a new Dexie database
+const db = new Dexie('EnigmaDatabase');
 
-async function openDb() {
-	console.log("openDb ...");
-	const request = indexedDB.open(DB_NAME, DB_VERSION);
+// Define the database schema
+db.version(1).stores({
+	enigmas: '++id, title, description, hints, solution, qrCode',
+});
 
-	request.onupgradeneeded = (e) => {
-		db = e.target.result;
-		console.log("creating store");
-		if (!db.objectStoreNames.contains(STORE_NAME)) {
-			db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
-		}
-	};
+export default db;
 
-	request.onsuccess = (e) => {
-		db = e.target.result;
-		console.log("openDb DONE");
-	};
+export const addEnigma = async (enigma) => {
+	return await db.enigmas.add(enigma);
+};
 
-	request.onerror = (e) => {
-		console.error("openDb:", e.target.errorCode);
-	};
-}
+export const getAllEnigmas = async () => {
+	return await db.enigmas.toArray();
+};
 
-async function addObject(storeName, object) {
-	console.log("addObject:", object);
-	const tx = db.transaction(storeName, 'readwrite');
-	const store = tx.objectStore(storeName);
-	const request = store.add(object);
+export const updateEnigma = async (id, enigma) => {
+	return await db.enigmas.update(id, enigma);
+};
 
-	request.onsuccess = (e) => {
-		console.log('Object added:', e.target.result);
-	};
+export const deleteEnigma = async (id) => {
+	return await db.enigmas.delete(id);
+};
 
-	request.onerror = (e) => {
-		console.error('addObject error', e.target.errorCode);
-	};
-}
-
-// Ensure to call this method when your application starts
-openDb();
-
-export { addObject };
+export const synchronizeEnigmas = async () => {
+	if (navigator.onLine) {
+		const enigmas = await getAllEnigmas();
+		// Replace '/api/enigmas/sync' with your actual API endpoint
+		await axios.post('/api/enigmas/sync', { enigmas });
+	}
+};

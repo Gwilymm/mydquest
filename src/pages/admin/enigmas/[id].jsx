@@ -1,7 +1,7 @@
 // pages/admin/enigmas/[id].jsx
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import EditEnigmaModal from '@/components/EditEnigmaModal'; // Adjust the import path as necessary
+import EditEnigmaModal from '@/components/Enigmas/EditEnigmaModal'; // Adjust the import path as necessary
 
 const EditEnigmaPage = () => {
   const router = useRouter();

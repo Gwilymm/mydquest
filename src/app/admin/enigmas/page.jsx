@@ -20,6 +20,21 @@ const EnigmasPage = () => {
     console.log('Delete enigma with ID:', id);
     // Make an API request to delete the enigma from the database here
   };
+  const synchronizeEnigmas = async () => {
+    const localEnigmas = await db.enigmas.toArray();
+    localEnigmas.forEach(async (enigma) => {
+      try {
+        await axios.put(`/api/enigmas/${enigma.id}`, enigma);
+        await db.enigmas.delete(enigma.id); // Remove from local DB after successful sync
+        console.log('Enigma synchronized:', enigma);
+      } catch (error) {
+        console.error('Failed to synchronize enigma:', error);
+      }
+    });
+  };
+  
+  window.addEventListener('online', synchronizeEnigmas);
+  
 
   return (
     <DashboardLayout>
