@@ -1,8 +1,7 @@
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-
-import { PrismaClient } from '@prisma/client'; // Adjust the import path to your Prisma client instance
+import prisma from '@/utils/prisma'// Adjust the import path to your Prisma client instance
 
 export default NextAuth({
 	providers: [
@@ -12,10 +11,14 @@ export default NextAuth({
 		}),
 		// other providers...
 	],
-	adapter: PrismaAdapter({ prisma: new PrismaClient() }),
-	callbacks: {
+	adapter: PrismaAdapter(prisma),
 
-		// other callbacks...
+	callbacks: {
+		async signIn(user, account, profile) {
+
+			// Allow sign-in to proceed
+			return true;
+		},
 	},
 
 	// Additional NextAuth configuration
