@@ -3,7 +3,7 @@ import { Typography, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditEnigmaModal from './EditEnigmaModal';
-import db from './db'
+import db from '@/utils/db';
 
 
 // Adjust the getRandomImageUrl function to receive width and height parameters
