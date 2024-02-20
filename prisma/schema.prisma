@@ -12,21 +12,31 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  email     String   @unique
-  username      String?
-  password  String
+  id       Int          @id @default(autoincrement())
+  email    String       @unique
+  name     String?
+  enigmas  UserEnigmas[]
 }
 
 model Enigma {
-  id          Int      @id @default(autoincrement())
+  id          Int          @id @default(autoincrement())
   title       String
   description String
   hints       String
   solution    String
   qrCode      String?
-  createdAt   DateTime @default(now())
+  createdAt   DateTime     @default(now())
+  users       UserEnigmas[]
+}
+
+// Join table for many-to-many relationship between User and Enigma
+model UserEnigmas {
+  userId    Int
+  enigmaId  Int
+  user      User   @relation(fields: [userId], references: [id])
+  enigma    Enigma @relation(fields: [enigmaId], references: [id])
+
+  @@id([userId, enigmaId])
 }
 
 
