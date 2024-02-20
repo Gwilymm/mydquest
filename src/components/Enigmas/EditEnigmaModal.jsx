@@ -83,7 +83,7 @@ const EditEnigmaModal = ({ enigma, open, handleCloseModal }) => {
         {/* Include other fields such as description, hints, etc. */}
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleCancel} color="primary">
+        <Button onClick={handleCloseModal} color="primary">
           Cancel
         </Button>
         <Button onClick={saveChanges} color="primary">

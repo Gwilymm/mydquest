@@ -1,10 +1,40 @@
 // app/home/page.js
-
-import React from 'react';
+"use client";
 import Image from 'next/image';
 import myDQuestImage from '/public/assets/image/illustration/home.png'; // Update the path to your image
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import db from '@/utils/db'; // Make sure to adjust the import path to your Dexie database instance
 
+const useSynchronizeEnigmas = () => {
+  useEffect(() => {
+    // Define the function inside useEffect to ensure it's only used on the client-side
+    const synchronizeEnigmas = async () => {
+      const localEnigmas = await db.enigmas.toArray();
+      for (const enigma of localEnigmas) {
+        try {
+          await axios.put(`/api/enigmas/${enigma.id}`, enigma);
+          await db.enigmas.delete(enigma.id); // Remove from local DB after successful sync
+          console.log('Enigma synchronized:', enigma);
+        } catch (error) {
+          console.error('Failed to synchronize enigma:', error);
+        }
+      }
+    };
+
+    // Check if the window object is available (i.e., code is running in the browser)
+    if (typeof window !== 'undefined') {
+      window.addEventListener('online', synchronizeEnigmas);
+
+      // Return a cleanup function to remove the event listener when the component unmounts or re-renders
+      return () => {
+        window.removeEventListener('online', synchronizeEnigmas);
+      };
+    }
+  }, []); // Empty dependency array ensures this runs once on mount
+};
 export default function HomePage() {
+  useSynchronizeEnigmas();
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header */}
