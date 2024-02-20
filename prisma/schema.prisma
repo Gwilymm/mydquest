@@ -19,3 +19,14 @@ model User {
   password  String
 }
 
+model Enigma {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  hints       String
+  solution    String
+  qrCode      String?
+  createdAt   DateTime @default(now())
+}
+
+
