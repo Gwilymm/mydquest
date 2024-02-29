@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Navbar from '@/components/Navbar';
 
 const ToolCard = ({ href, title, description, imageUrl }) => (
 	<div className="transform transition duration-500 hover:scale-105 bg-blue-900 rounded-lg overflow-hidden shadow-xl hover:shadow-2xl">
@@ -33,33 +34,38 @@ export default function ToolsPage() {
 	];
 
 	return (
-		<div className="container mx-auto p-6">
-			<h1 className="text-4xl font-bold text-center mb-12">Tools</h1>
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-				<ToolCard
-					href="/tools/gps"
-					title="GPS"
-					description="Find your way around with our GPS tool."
-					imageUrl={placeholderImages[ 0 ]}
-				/>
-				<ToolCard
-					href="/tools/nfc"
-					title="NFC"
-					description="Interact with NFC tags and devices."
-					imageUrl={placeholderImages[ 1 ]}
-				/>
-				<ToolCard
-					href="/tools/ocr"
-					title="OCR"
-					description="Read and process text from images."
-					imageUrl={placeholderImages[ 2 ]}
-				/>
-				<ToolCard
-					href="/tools/qrscan"
-					title="QR Scan"
-					description="Scan QR codes quickly and easily."
-					imageUrl={placeholderImages[ 3 ]}
-				/>
+		<div className=" text-gray-900 min-h-screen">
+
+
+			<Navbar />
+			<div className="container mx-auto p-6">
+				<h1 className="text-4xl font-bold text-center mb-12">Tools</h1>
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+					<ToolCard
+						href="/tools/gps"
+						title="GPS"
+						description="Find your way around with our GPS tool."
+						imageUrl={placeholderImages[ 0 ]}
+					/>
+					<ToolCard
+						href="/tools/nfc"
+						title="NFC"
+						description="Interact with NFC tags and devices."
+						imageUrl={placeholderImages[ 1 ]}
+					/>
+					<ToolCard
+						href="/tools/ocr"
+						title="OCR"
+						description="Read and process text from images."
+						imageUrl={placeholderImages[ 2 ]}
+					/>
+					<ToolCard
+						href="/tools/qrscan"
+						title="QR Scan"
+						description="Scan QR codes quickly and easily."
+						imageUrl={placeholderImages[ 3 ]}
+					/>
+				</div>
 			</div>
 		</div>
 	);

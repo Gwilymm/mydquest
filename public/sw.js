@@ -67,7 +67,7 @@ if (!self.define) {
     });
   };
 }
-define(['./workbox-1b1de004'], (function (workbox) { 'use strict';
+define(['./workbox-7144475a'], (function (workbox) { 'use strict';
 
   importScripts();
   self.skipWaiting();
@@ -88,7 +88,6 @@ define(['./workbox-1b1de004'], (function (workbox) { 'use strict';
     "cacheName": "dev",
     plugins: []
   }), 'GET');
-  self.__WB_DISABLE_DEV_LOGS = true;
 
 }));
 //# sourceMappingURL=sw.js.map

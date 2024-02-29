@@ -6,7 +6,7 @@ export default function AuthButton() {
 
 	// This handler will be used for the sign-in button
 	const handleSignIn = () => {
-		signIn('credentials', { callbackUrl: `${window.location.origin}/user/dashboard` });
+		signIn('credentials', { callbackUrl: `${window.location.origin}/user` });
 	};
 
 	// This handler will be used for the sign-out button
