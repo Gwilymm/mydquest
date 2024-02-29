@@ -1,6 +1,6 @@
 // app/home/page.js
 "use client";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import myDQuestImage from '/public/assets/image/illustration/home.png'; // Update the path to your image
 import React, { useEffect } from 'react';
 import axios from 'axios';
@@ -47,10 +47,13 @@ export default function HomePage() {
         <Image
           src={myDQuestImage}
           alt="MyD Quest Adventure"
-          layout="fill"
-          objectFit="cover"
-          priority // for preloading the image
-        />
+          // for preloading the image
+          priority
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: "cover"
+          }} />
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="text-center">
             <h2 className="text-5xl font-bold text-white">Discover the forgotten CousCous</h2>
