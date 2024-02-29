@@ -3,6 +3,8 @@ self.addEventListener('install', (event) => {
 	event.waitUntil(
 		caches.open('static-v1').then((cache) => cache.addAll([
 			// Ajoutez d'autres ressources statiques ici
+			'/src/app/tools',
+			'/src/app/user',
 		]))
 	);
 });
