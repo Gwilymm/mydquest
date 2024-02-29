@@ -6,17 +6,7 @@ import prisma from "@/utils/prisma"
 
 
 export default NextAuth({
-	events: {
-		signIn: async (message) => {
-			console.log('SIGN IN', message);
-		},
-		signOut: async (message) => {
-			console.log('SIGN OUT', message);
-		},
-		error: async (message) => {
-			console.error('An error occurred:', message);
-		},
-	},
+
 	debug: process.env.NODE_ENV === 'development',
 	adapter: PrismaAdapter(prisma),
 	providers: [

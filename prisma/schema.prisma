@@ -26,6 +26,7 @@ model Enigma {
 model UserEnigmas {
   userId   String
   enigmaId Int
+  isSolved  Boolean @default(false)
   user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   enigma   Enigma @relation(fields: [enigmaId], references: [id], onDelete: Cascade)
 
