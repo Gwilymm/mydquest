@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from '@mui/material';
 
-const EditEnigmaModal = ({ enigma, open, handleCloseModal }) => {
+const EnigmaModal = ({ enigma, open, onClose }) => {
   const [showSpoiler, setShowSpoiler] = useState(false); // State to toggle spoiler visibility
   const [userAnswer, setUserAnswer] = useState(''); // State for the user's answer
   const [isCorrect, setIsCorrect] = useState(null); // State to store if the answer is correct
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleSpoiler = () => {
     setShowSpoiler(!showSpoiler);
@@ -15,6 +16,9 @@ const EditEnigmaModal = ({ enigma, open, handleCloseModal }) => {
     setIsCorrect(null); // Reset correctness state when answer changes
   };
 
+	const handleCloseModal = () => {
+  		setIsModalOpen(false);
+	};
   const verifyAnswer = async () => {
 	try {
 	  // Préparation du corps de la requête
@@ -50,7 +54,7 @@ const EditEnigmaModal = ({ enigma, open, handleCloseModal }) => {
    
 
   return (
-	<Dialog open={open} onClose={handleCloseModal}>
+	<Dialog open={open} onClose={onClose}>
 	  <DialogTitle>Enigma Details</DialogTitle>
 	  <DialogContent>
 	    <div>
@@ -91,4 +95,4 @@ const EditEnigmaModal = ({ enigma, open, handleCloseModal }) => {
    );
  };
  
- export default EditEnigmaModal;
+ export default EnigmaModal;

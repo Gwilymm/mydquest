@@ -23,7 +23,11 @@ const EnigmaListItem = ({ enigma, onDelete, isAccessible }) => {
       setTimeout(() => setIsShaking(false), 820); // Réinitialise l'état après l'animation
     }
   };
-  const handleCloseModal = () => setIsModalOpen(false);
+
+	const handleCloseModal = () => {
+  	setIsModalOpen(false);
+	};
+
 
 
   return (
@@ -67,8 +71,8 @@ const EnigmaListItem = ({ enigma, onDelete, isAccessible }) => {
       </div>
       <EnigmaModal
         enigma={enigma}
-        open={isModalOpen}
-        onClose={handleCloseModal}
+	   open={isModalOpen}
+	   handleClose={handleCloseModal}
        
       />
     </div>
