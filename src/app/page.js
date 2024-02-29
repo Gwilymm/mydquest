@@ -9,7 +9,9 @@
  * 
  * Generated on 02/29/2024 Gwilymm
  */
+// app/page.js
 
+//not
 "use client";
 import { SessionProvider } from "next-auth/react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
@@ -21,10 +23,9 @@ export default function Page({ children, session }) {
 
   return (
     <SessionProvider session={session}>
-
-      {children} {/* Les composants de la page seront injectés ici automatiquement par Next.js */}
-
+      <div ref={parent}>
+        {children}
+      </div>
     </SessionProvider>
   );
 }
-

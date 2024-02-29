@@ -1,23 +1,20 @@
 "use client";
-import { useSession, signIn } from 'next-auth/react';
+import { useSession, SessionProvider } from 'next-auth/react';
 import AuthButton from "@/components/AuthButton";
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 
-export default function LoginPage() {
+export default function Example() {
+	return (
+		<SessionProvider>
+			<LoginPage />
+		</SessionProvider>
+	);
+}
+
+function LoginPage() {
 	const { data: session } = useSession();
-	const router = useRouter();
 
-	useEffect(() => {
-		// If there is a session, redirect to the /user page
-		if (session) {
-			router.push('/user');
-		}
-	}, [ session, router ]);
-
-	// If the session exists, we're redirecting, no need to render the login form
-	if (session) return null;
+	//if 
 
 	return (
 		<div className="flex min-h-screen items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -30,8 +27,8 @@ export default function LoginPage() {
 				<div>
 					<img
 						className="mx-auto h-12 w-auto"
-						src="/assets/image/logo/mydquest_new_logo_72x72.png" // Make sure the path is correct
-						alt="MyD Quest Logo"
+						src="./assets/image/logo/mydquest_new_logo_72x72.png"
+						alt="Your Company"
 					/>
 					<h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
 						Sign in to your account
