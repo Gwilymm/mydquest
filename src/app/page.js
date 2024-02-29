@@ -1,6 +1,6 @@
 // app/home/page.js
 "use client";
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import myDQuestImage from '/public/assets/image/illustration/home.png'; // Update the path to your image
 import React, { useEffect } from 'react';
 import axios from 'axios';
