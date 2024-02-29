@@ -30,8 +30,16 @@ export default async function handler(req, res) {
 			}
 
 			// Then, use the found user's ID and enigma's ID to create the UserEnigmas record
-			const userEnigma = await prisma.userEnigmas.create({
-				data: {
+			// Utilisation de `upsert` au lieu de `create`
+			const userEnigma = await prisma.userEnigmas.upsert({
+				where: {
+					userId_enigmaId: {
+						userId: user.id,
+						enigmaId: enigma.id,
+					},
+				},
+				update: {}, // Pas besoin de mise à jour spécifique ici
+				create: {
 					userId: user.id,
 					enigmaId: enigma.id,
 				},
