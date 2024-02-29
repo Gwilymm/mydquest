@@ -39,8 +39,17 @@ const QRScanPage = () => {
 
 					if (response.ok) {
 						console.log('Enigma added to user account successfully.');
+						//affiche un message de confirmation
+
+						// clear the QR code scanner et retourne sur la page d'accueil
+						html5QrCode.clear();
+						alert("Enigme ajoutée avec succès à votre compte.");
+						window.location.href = "/user";
 					} else {
 						console.error('Failed to add enigma to user account.');
+						// show an alert message
+						alert("Echec de l'ajout de l'énigme au compte. Veuillez réessayer.");
+
 					}
 				} catch (error) {
 					console.error('Error adding enigma to user account:', error);

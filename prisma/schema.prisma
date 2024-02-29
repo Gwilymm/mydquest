@@ -17,7 +17,7 @@ model Enigma {
   description String
   hints       String
   solution    String
-  qrCode      String?
+  qrCode      String      @unique
   createdAt   DateTime     @default(now())
   users       UserEnigmas[]
 }
