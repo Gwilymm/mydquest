@@ -1,45 +1,45 @@
-import { motion } from 'framer-motion';
+// Importez les composants nécessaires de Shadcn et autres dépendances
 import React from 'react';
-import { signOut } from "next-auth/react"; // Import the signOut method
+import { signOut } from "next-auth/react"; // Méthode de déconnexion
+import { Sidebar, Navbar, Button } from '@shadcn/ui'; // Exemple d'importation de composants Shadcn
+import { LogoutIcon } from '@heroicons/react/outline'; // Importation d'une icône de déconnexion
+import { motion } from 'framer-motion';
 
 const DashboardLayout = ({ children }) => {
-  // Function to handle sign-out
   const handleSignOut = () => {
-    signOut({ callbackUrl: '/' }); // Redirect to homepage after sign out
+    signOut({ callbackUrl: '/' }); // Redirection vers la page d'accueil après déconnexion
   };
 
   return (
     <div className="flex h-screen overflow-hidden bg-gray-100">
-      {/* Sidebar */}
-      <motion.aside
-        initial={{ width: 0 }}
-        animate={{ width: 250 }}
-        className="flex flex-col flex-shrink-0 w-64 h-full p-5 bg-white border-r"
-      >
-        <h2 className="text-3xl font-semibold">Dashboard</h2>
-        {/* Navigation Links */}
-        <nav className="flex flex-col mt-10 space-y-2">
-          <a href="#" className="hover:text-indigo-600">Home</a>
-          <a href="#" className="hover:text-indigo-600">Profile</a>
-          <a href="#" className="hover:text-indigo-600">Settings</a>
-          {/* Sign out link */}
-          <button 
-            onClick={handleSignOut} 
-            className="mt-4 px-4 py-2 text-sm text-white bg-red-500 rounded hover:bg-red-700"
+      {/* Sidebar avec Shadcn */}
+      <Sidebar width={250} className="border-r">
+        <Sidebar.Brand>
+          <h2 className="text-3xl font-semibold">Dashboard</h2>
+        </Sidebar.Brand>
+        <Sidebar.Items>
+          <Sidebar.Item href="#">Home</Sidebar.Item>
+          <Sidebar.Item href="#">Tools</Sidebar.Item>
+          <Sidebar.Item href="#">Settings</Sidebar.Item>
+          {/* Bouton de déconnexion */}
+          <Button 
+            icon={<LogoutIcon className="h-5 w-5" />} 
+            onClick={handleSignOut}
+            className="mt-4"
           >
             Sign Out
-          </button>
-        </nav>
-      </motion.aside>
+          </Button>
+        </Sidebar.Items>
+      </Sidebar>
 
-      {/* Main content */}
+      {/* Contenu principal */}
       <div className="flex flex-col flex-1 overflow-hidden">
-        {/* Header */}
-        <header className="flex items-center justify-between flex-shrink-0 p-5 bg-white border-b">
+        {/* En-tête */}
+        <Navbar className="justify-between flex-shrink-0 p-5 border-b">
           <h1 className="text-2xl font-semibold">Welcome Back!</h1>
-        </header>
+        </Navbar>
 
-        {/* Content */}
+        {/* Contenu */}
         <main className="flex-1 overflow-y-auto p-5">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
