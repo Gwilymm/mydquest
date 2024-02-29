@@ -1,3 +1,14 @@
+/**
+ * Le composant QRScanPage d'une application React récupère les données de session, initialise un
+ * scanner de code QR et permet aux utilisateurs de scanner des codes QR pour ajouter des énigmes à
+ * leur compte.
+ * @returns Le composant QRScanPage est renvoyé. Ce composant inclut un rendu conditionnel basé sur
+ * l'état de la session. Si la session n'est pas chargée, elle affiche "Chargement...". Si
+ * l'utilisateur n'est pas connecté, il affiche « Veuillez vous connecter pour scanner les codes QR. ».
+ * Sinon, il affiche l'interface du scanner de code QR dans la mise en page avec un composant Navbar.
+ * 
+ * Generated on 02/29/2024 Gwilymm
+ */
 // app/tools/qrscan/page.js
 "use client";
 import React, { useEffect, useRef, useState } from 'react';

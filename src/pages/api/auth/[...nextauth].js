@@ -1,3 +1,5 @@
+/* Cet extrait de code configure l'authentification à l'aide de NextAuth dans une application Next.js.
+Voici un aperçu de ce que fait chaque partie : */
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { PrismaAdapter } from "@auth/prisma-adapter"

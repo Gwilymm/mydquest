@@ -1,3 +1,18 @@
+/**
+ * Cette fonction JavaScript gère une requête POST pour ajouter une énigme au compte d'un utilisateur
+ * en fonction de son email et d'un code QR.
+ * @param   $req - Le paramètre « req » dans l'extrait de code représente l'objet de requête, qui
+ * contient des informations sur la requête HTTP que le serveur reçoit. Cet objet comprend des détails
+ * tels que la méthode de requête (GET, POST, PUT, DELETE, etc.), les en-têtes de requête, le corps de
+ * la requête (pour les requêtes POST), les paramètres d'URL, la requête.
+ * @param   $res - Le paramètre `res` dans votre code représente l'objet de réponse HTTP que vous
+ * utilisez pour renvoyer une réponse au client effectuant la demande. Il vous permet de définir des
+ * en-têtes, des codes d'état et de renvoyer des données au client.
+ * @returns L'extrait de code fourni est une fonction de gestionnaire de route de l'API Next.js qui
+ * gère une requête POST.
+ * 
+ * Generated on 02/29/2024 Gwilymm
+ */
 import prisma from "@/utils/prisma";
 
 export default async function handler(req, res) {

@@ -21,7 +21,7 @@ const EnigmasPage = () => {
 
   return (
     <DashboardLayout>
-      
+
     </DashboardLayout>
   );
 };

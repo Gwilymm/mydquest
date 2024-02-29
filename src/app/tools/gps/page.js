@@ -1,3 +1,13 @@
+/**
+ * La fonction `GeolocationPage` récupère la géolocalisation de l'utilisateur et l'affiche sur une
+ * carte Leaflet avec une icône personnalisée.
+ * @returns Le composant GeolocationPage est renvoyé. Ce composant affiche une carte avec le marqueur
+ * de localisation actuel de l'utilisateur à l'aide des bibliothèques Leaflet et React Leaflet. Il
+ * comprend également des fonctionnalités permettant de gérer la récupération de géolocalisation, la
+ * gestion des erreurs et le chargement dynamique des composants Leaflet.
+ * 
+ * Generated on 02/29/2024 Gwilymm
+ */
 "use client";
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';

@@ -1,3 +1,21 @@
+/**
+ * Cette fonction récupère les énigmes associées à un utilisateur en fonction de ses informations de
+ * session et renvoie un tableau simplifié de données d'énigme.
+ * @param   $req - Le paramètre `req` dans votre code représente l'objet de requête. Il contient des
+ * informations sur la requête HTTP adressée au serveur, telles que la méthode de requête (GET, POST,
+ * etc.), les en-têtes de requête, le corps de la requête, les paramètres d'URL, les paramètres de
+ * requête, etc.
+ * @param   $res - Le paramètre `res` dans votre code représente l'objet de réponse HTTP qui sera
+ * renvoyé au client effectuant la demande. Il est utilisé pour renvoyer la réponse au client avec le
+ * code d'état et les données appropriés.
+ * @returns L'extrait de code fourni est une route API Next.js qui gère les requêtes GET pour récupérer
+ * les énigmes associées à un utilisateur. Si la méthode de requête est GET, le code vérifie d'abord la
+ * session utilisateur à l'aide de « getSession » de next-auth/react. S'il existe une session valide
+ * avec des informations utilisateur, il interroge ensuite la base de données à l'aide de Prisma pour
+ * trouver l'utilisateur et ses énigmes associées.
+ * 
+ * Generated on 02/29/2024 Gwilymm
+ */
 
 // Import getSession from next-auth/react
 import { getSession } from "next-auth/react";

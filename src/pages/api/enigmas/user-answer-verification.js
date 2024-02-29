@@ -1,3 +1,19 @@
+/**
+ * Cette fonction vérifie la réponse d'un utilisateur à une énigme spécifique et met à jour le statut
+ * en conséquence.
+ * @param   $req - Le paramètre « req » dans l'extrait de code représente l'objet de requête qui
+ * contient des informations sur la requête HTTP adressée au serveur. Il comprend des détails tels que
+ * la méthode de requête (GET, POST, etc.), les en-têtes de requête, le corps de la requête, les
+ * paramètres de requête, etc.
+ * @param   $res - Le paramètre « res » dans l'extrait de code fait référence à l'objet de réponse
+ * dans un serveur HTTP Node.js. Il est utilisé pour renvoyer une réponse au client qui fait la
+ * demande. Dans ce contexte, `res` est utilisé pour envoyer des réponses JSON avec des codes d'état
+ * appropriés basés sur la vérification d'un utilisateur
+ * @returns La fonction de gestionnaire dans le code renvoie différentes réponses JSON en fonction des
+ * conditions :
+ * 
+ * Generated on 02/29/2024 Gwilymm
+ */
 // fichier : pages/api/user-answer-verification.js
 import React, { useEffect, useRef, useState } from 'react';
 import prisma from "@/utils/prisma";

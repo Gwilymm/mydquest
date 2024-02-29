@@ -1,3 +1,9 @@
+/**
+ * Handles the request to retrieve an enigma by its ID.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the enigma is retrieved and sent as a response.
+ */
 import prisma from '@/utils/prisma';
 
 export default async function handle(req, res) {

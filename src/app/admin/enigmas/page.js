@@ -5,7 +5,7 @@ import EnigmaList from '@/components/Enigmas/EnigmaList';
 
 // This page is likely a Server Component by default in Next.js 14
 const EnigmasPage = () => {
-  
+
   const useSynchronizeEnigmas = () => {
     useEffect(() => {
       // Define the function inside useEffect to ensure it's only used on the client-side
@@ -21,11 +21,11 @@ const EnigmasPage = () => {
           }
         }
       };
-  
+
       // Check if the window object is available (i.e., code is running in the browser)
       if (typeof window !== 'undefined') {
         window.addEventListener('online', synchronizeEnigmas);
-  
+
         // Return a cleanup function to remove the event listener when the component unmounts or re-renders
         return () => {
           window.removeEventListener('online', synchronizeEnigmas);
@@ -35,14 +35,14 @@ const EnigmasPage = () => {
   };
 
   useSynchronizeEnigmas();
-  
-  
+
+
 
   return (
     <DashboardLayout>
       <h1 className="text-2xl font-bold mb-4">Enigmas</h1>
       {/* EnigmaList will need to be a Client Component if it contains interactive elements */}
-      <EnigmaList  />
+      <EnigmaList />
     </DashboardLayout>
   );
 };
