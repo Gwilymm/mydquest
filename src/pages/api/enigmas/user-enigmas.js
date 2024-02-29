@@ -45,6 +45,7 @@ export default async function handler(req, res) {
                 solution: userEnigma.enigma.solution,
                 qrCode: userEnigma.enigma.qrCode,
                 createdAt: userEnigma.enigma.createdAt,
+                isSolved: userEnigma.isSolved,
                 // Include any other fields you need
             }));
 

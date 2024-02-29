@@ -1,26 +1,19 @@
 // fichier : pages/api/user-answer-verification.js
-import { getSession } from "next-auth/react";
+import React, { useEffect, useRef, useState } from 'react';
 import prisma from "@/utils/prisma";
 
 
 
 export default async function handler(req, res) {
-	// Utiliser getSession pour obtenir les informations de l'utilisateur connecté
-	const session = await getSession({ req });
-	console.log('session', session);
-
-	if (!session) {
-		return res.status(401).json({ message: "Unauthorized" });
-	}
-
-	if (req.method === 'GET') {
-		const enigmaId = req.query.enigmaId;
-		const userAnswer = req.query.userAnswer;
+	if (req.method === 'POST') {
+		// Extraction de `enigmaId` et `userAnswer` du corps de la requête, pas des query params
+		const { enigmaId, userAnswer, userEmail } = req.body;
 
 		try {
-			// Trouver l'utilisateur basé sur l'email de la session (assurez-vous que l'email est unique dans votre base de données)
 			const user = await prisma.user.findUnique({
-				where: { email: session.user.email },
+				where: {
+					email: userEmail,
+				},
 			});
 
 			if (!user) {
@@ -63,7 +56,7 @@ export default async function handler(req, res) {
 			res.status(500).json({ message: 'Failed to verify answer.' });
 		}
 	} else {
-		res.setHeader('Allow', [ 'GET' ]);
+		res.setHeader('Allow', [ 'POST' ]);
 		res.status(405).end(`Method ${req.method} Not Allowed`);
 	}
 }

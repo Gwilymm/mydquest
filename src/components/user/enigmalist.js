@@ -13,6 +13,7 @@ const EnigmaList = () => {
 				const { data } = await axios.get(`/api/enigmas/user-enigmas`);
 				// Supposons que `data` est un tableau d'énigmes avec une propriété `isSolved` pour chaque énigme
 				setEnigmas(data);
+				console.log(data);
 			} catch (error) {
 				console.error('Failed to fetch user enigmas:', error);
 			}

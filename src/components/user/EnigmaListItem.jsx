@@ -24,11 +24,7 @@ const EnigmaListItem = ({ enigma, onDelete, isAccessible }) => {
     }
   };
 
-	const handleCloseModal = () => {
-  	setIsModalOpen(false);
-	};
-
-
+	
 
   return (
     <div
@@ -72,7 +68,7 @@ const EnigmaListItem = ({ enigma, onDelete, isAccessible }) => {
       <EnigmaModal
         enigma={enigma}
 	   open={isModalOpen}
-	   handleClose={handleCloseModal}
+	   onClose={() => setIsModalOpen(false)}
        
       />
     </div>
