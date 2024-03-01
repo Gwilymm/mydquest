@@ -27,8 +27,19 @@ export default function AuthButton() {
 	}
 	return (
 		<>
-			Not signed in <br />
-			<button onClick={handleSignIn}>Sign in</button>
+			<div className="flex min-h-full items-center justify-center flex-col px-6 py-12 lg:px-8">
+				<p className="mb-4 text-center text-lg">
+					Not signed in <br />
+				</p>
+				<button
+					onClick={handleSignIn}
+					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition duration-200 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+				>
+					Sign in
+				</button>
+			</div>
+
 		</>
+
 	);
 }
