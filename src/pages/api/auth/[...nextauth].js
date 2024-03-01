@@ -8,7 +8,7 @@ import prisma from "@/utils/prisma"
 export default async function auth(req, res) {
 	return await NextAuth(req, res, {
 
-		debug: process.env.NODE_ENV === 'development',
+
 		adapter: PrismaAdapter(prisma),
 		providers: [
 			GoogleProvider({

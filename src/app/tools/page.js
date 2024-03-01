@@ -65,12 +65,7 @@ export default function ToolsPage() {
 						description="Scan QR codes quickly and easily."
 						imageUrl={placeholderImages[ 3 ]}
 					/>
-					<ToolCard
-						href="/tools/swagger"
-						title="QR Scan"
-						description="Scan QR codes quickly and easily."
-						imageUrl={placeholderImages[ 3 ]}
-					/>
+
 				</div>
 			</div>
 		</div>

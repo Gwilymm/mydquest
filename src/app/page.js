@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from 'next/router'
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider, useSession } from "next-auth/react";
 import { getSession } from 'next-auth/react';
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Image from "next/image";
@@ -9,15 +9,38 @@ import myDQuestImage from '/public/assets/image/illustration/home.png'; // Updat
 import "./globals.css"; // Assurez-vous que le chemin d'accès est correct
 
 export default function Page({ children }) {
+  return (
+    <SessionProvider>
+      <HomePage />
+      {children}
+    </SessionProvider>
+  );
+}
+
+
+function HomePage({ children }) {
+  if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/custom-worker.js.js').then(function (registration) {
+        // Enregistrement réussi
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, function (err) {
+        // Enregistrement échoué :(
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+  }
+
 
   const [ parent ] = useAutoAnimate();
-  const session = getSession();
+  const { data: session } = useSession();
 
 
   return (
     <SessionProvider session={session}>
 
       <div className="h-full bg-gray-600" ref={parent}>
+        {children}
         <div className="flex flex-col min-h-screen">
           {/* Header */}
           <header className="p-4 bg-gray-800 text-white">

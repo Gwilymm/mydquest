@@ -43,7 +43,16 @@ export default async function handler(req, res) {
 			if (!enigma) {
 				return res.status(404).json({ error: 'Enigma not found.' });
 			}
-
+			// if the enigma is already added to the user account, return an error
+			const userEnigmaExists = await prisma.userEnigmas.findFirst({
+				where: {
+					userId: user.id,
+					enigmaId: enigma.id,
+				},
+			});
+			if (userEnigmaExists) {
+				return res.status(400).json({ error: 'Enigma already added to user account.' });
+			}
 			// Then, use the found user's ID and enigma's ID to create the UserEnigmas record
 			// Utilisation de `upsert` au lieu de `create`
 			const userEnigma = await prisma.userEnigmas.upsert({

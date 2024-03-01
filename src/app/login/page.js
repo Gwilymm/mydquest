@@ -13,6 +13,7 @@ export default function Example() {
 
 function LoginPage() {
 	const { data: session } = useSession();
+	console.log('session', session);
 
 	/* L'extrait de code `//si la session est active, rediriger vers la page utilisateur
 	si (session) {

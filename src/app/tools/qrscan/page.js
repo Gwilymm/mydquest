@@ -1,35 +1,33 @@
-/**
- * Le composant QRScanPage d'une application React récupère les données de session, initialise un
- * scanner de code QR et permet aux utilisateurs de scanner des codes QR pour ajouter des énigmes à
- * leur compte.
- * @returns Le composant QRScanPage est renvoyé. Ce composant inclut un rendu conditionnel basé sur
- * l'état de la session. Si la session n'est pas chargée, elle affiche "Chargement...". Si
- * l'utilisateur n'est pas connecté, il affiche « Veuillez vous connecter pour scanner les codes QR. ».
- * Sinon, il affiche l'interface du scanner de code QR dans la mise en page avec un composant Navbar.
- * 
- * Generated on 02/29/2024 Gwilymm
- */
 // app/tools/qrscan/page.js
 "use client";
+import { SessionProvider, useSession } from 'next-auth/react';
 import React, { useEffect, useRef, useState } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import Navbar from '@/components/Navbar'; // Ensure this path matches your project structure
+import Alert from '@/components/ui/alert'; // Ensure this path matches your project structure
 
-const QRScanPage = () => {
+
+
+export default function Page({ children }) {
+	return (
+		<SessionProvider>
+			<QRScanPage />
+		</SessionProvider>
+	);
+}
+
+
+
+function QRScanPage() {
 	const qrRef = useRef(null);
-	const [ session, setSession ] = useState(null); // Initialize session state
-
-	useEffect(() => {
-		// Fetch the session data from /api/session
-		fetch('/api/session')
-			.then(res => res.json())
-			.then(data => {
-				setSession(data.session); // Update session state with fetched data
-			})
-			.catch(error => {
-				console.error("Failed to fetch session:", error);
-			});
-	}, []);
+	const { data: session, status } = useSession(); // Utilisez destructuring pour accéder à la session
+	console.log('session', session);
+	const [ isAlertOpen, setIsAlertOpen ] = useState(false);
+	const [ alertContent, setAlertContent ] = useState({ title: '', message: '', buttonText: 'Retour' });
+	const showAlert = (title, message) => {
+		setAlertContent({ title, message, buttonText: 'Retour' });
+		setIsAlertOpen(true);
+	};
 
 	useEffect(() => {
 		let html5QrCode;
@@ -49,21 +47,16 @@ const QRScanPage = () => {
 					});
 
 					if (response.ok) {
-						console.log('Enigma added to user account successfully.');
-						//affiche un message de confirmation
-
-						// clear the QR code scanner et retourne sur la page d'accueil
-						html5QrCode.clear();
-						alert("Enigme ajoutée avec succès à votre compte.");
+						showAlert("Énigme ajoutée", "L'énigme a été ajoutée à votre compte avec succès.");
 						window.location.href = "/user";
+					} else if (response.status === 400) {
+						showAlert("Erreur", "Énigme déjà ajoutée à votre compte.");
 					} else {
-						console.error('Failed to add enigma to user account.');
-						// show an alert message
-						alert("Echec de l'ajout de l'énigme au compte. Veuillez réessayer.");
-
+						showAlert("Erreur", "Impossible d'ajouter l'énigme à votre compte. Veuillez réessayer.");
 					}
 				} catch (error) {
 					console.error('Error adding enigma to user account:', error);
+					showAlert("Erreur", "Une erreur est survenue lors de l'ajout de l'énigme.");
 				}
 			};
 
@@ -94,8 +87,16 @@ const QRScanPage = () => {
 			<div className="flex flex-col mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 items-center justify-center min-h-screen p-4">
 				<div id="qr-reader" ref={qrRef} className="w-full max-w-md"></div>
 			</div>
+			{isAlertOpen && (
+				<Alert
+					isOpen={isAlertOpen}
+					setIsOpen={setIsAlertOpen}
+					title={alertContent.title}
+					message={alertContent.message}
+					buttonText={alertContent.buttonText}
+				/>
+			)}
 		</div>
 	);
 };
 
-export default QRScanPage;

@@ -2,7 +2,8 @@
 	"id": "any_id",
 	"name": "MyDQuest Discover the forgotten CousCous",
 	"short_name": "MyDQuest",
-	"description": "MyDQuest is a game that will help you discover the forgotten CousCous",
+	"description": "MyDQuest is a game that will help you discover the forgotten CousCous. Brought to you by the Big Horse Nuts Team",
+	
 	"icons": [
 	  {
 	    "src": "/assets/image/logo/mydquest_new_logo_72x72.png",

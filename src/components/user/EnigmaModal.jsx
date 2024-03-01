@@ -67,7 +67,11 @@ const EnigmaModal = ({ enigma, open, onClose }) => {
       <DialogContent>
         <div><strong>Title:</strong> {enigma.title}</div>
         <div><strong>Description:</strong> {enigma.description}</div>
-        <div><strong>Hints:</strong> {enigma.hints}</div>
+        <div><strong>Hints: </strong> 
+          {showSpoiler ? enigma.hints : (
+            <Button onClick={toggleSpoiler} color="secondary">Show Hints</Button>
+          )}
+        </div>
         <TextField
           margin="dense"
           label="Your Answer"

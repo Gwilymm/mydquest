@@ -71,6 +71,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   enigmas  UserEnigmas[]
+  offlinePassword String? 
 }
 
 model VerificationToken {
