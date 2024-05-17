@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import Navbar from '@/components/Navbar'; // Ensure this path matches your project structure
 import Alert from '@/components/ui/alert'; // Ensure this path matches your project structure
-
+//
 
 
 export default function Page({ children }) {
